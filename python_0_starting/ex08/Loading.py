@@ -11,15 +11,16 @@ def calculate_percentage(part: int, whole: int):
         return "Division by zero is not allowed."
     return round((float(part) / float(whole)) * 100)
 
+def timesstamp(starttime: int, curr: int, total_items: int) -> str:
+
+
 def progressBar(barlen: int, curr: int, total_items: int) -> str:
     progress = int(round(barlen) * (curr + 1) / float(total_items))
 
     progress_str = str()
     progress_str += f"{calculate_percentage(curr + 1, total_items):3d}"
-    progress_str += '%'
-    progress_str += '|'
-    progress_str += '█' * progress + ' ' * (barlen - progress)
-    progress_str += '| '
+    progress_str += '%|'
+    progress_str += '█' * progress + ' ' * (barlen - progress) + '| '
     progress_str += f'{(curr + 1):3d}/{total_items}'
 
     return progress_str
@@ -34,7 +35,7 @@ def ft_tqdm(lst: range) -> None:
     for curr in lst:
         display = str()
         display += progressBar(barlen, curr, total_items)
-        ##display += timesstamp(starttime, curr, total_items)
+        display += timesstamp(starttime, curr, total_items)
         print(display, end='\r')
         yield
     
