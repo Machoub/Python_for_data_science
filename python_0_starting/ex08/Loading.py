@@ -16,6 +16,13 @@ def progressBar(barlen: int, curr: int, total_items: int) -> str:
 
     progress_str = str()
     progress_str += f"{calculate_percentage(curr + 1, total_items):3d}"
+    progress_str += '%'
+    progress_str += '|'
+    progress_str += '█' * progress + ' ' * (barlen - progress)
+    progress_str += '| '
+    progress_str += f'{(curr + 1):3d}/{total_items}'
+
+    return progress_str
 
 def ft_tqdm(lst: range) -> None:
     total_items = len(lst)
@@ -33,5 +40,5 @@ def ft_tqdm(lst: range) -> None:
     
     return
 
-for i in ft_tqdm(range(333)):
+for i in ft_tqdm(range(666)):
     sleep(0.005)
