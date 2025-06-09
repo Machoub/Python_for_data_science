@@ -1,4 +1,3 @@
-
 import time
 from time import sleep
 import os
@@ -55,5 +54,5 @@ def ft_tqdm(lst: range) -> None:
     
     return
 
-for i in ft_tqdm(range(333)):
+for i in ft_tqdm(range(1000000)):
     sleep(0.005)
