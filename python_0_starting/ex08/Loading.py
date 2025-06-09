@@ -12,15 +12,29 @@ def calculate_percentage(part: int, whole: int):
     return round((float(part) / float(whole)) * 100)
 
 def timesstamp(starttime: int, curr: int, total_items: int) -> str:
+    tim = time.time() - starttime
+    speed = curr / tim if tim > 0 else 0
+    remaining_time = (total_items - curr) / speed if speed > 0 else 0
 
+    elapsed_minutes, elapsed_seconds = divmod(tim, 60)
+    remaining_minutes, remaining_seconds = divmod(remaining_time, 60)
+
+    result = str()
+    result += f' [{elapsed_minutes:02.0f}:{elapsed_seconds:02.0f}<'
+    result += f'{remaining_minutes:02.0f}:{remaining_seconds:02.0f}, '
+    result += f'{speed:05.02f}it/s]'
+
+    return result
 
 def progressBar(barlen: int, curr: int, total_items: int) -> str:
     progress = int(round(barlen) * (curr + 1) / float(total_items))
 
     progress_str = str()
     progress_str += f"{calculate_percentage(curr + 1, total_items):3d}"
-    progress_str += '%|'
-    progress_str += '█' * progress + ' ' * (barlen - progress) + '| '
+    progress_str += '%'
+    progress_str += '|'
+    progress_str += '█' * progress + ' ' * (barlen - progress)
+    progress_str += '| '
     progress_str += f'{(curr + 1):3d}/{total_items}'
 
     return progress_str
@@ -41,5 +55,5 @@ def ft_tqdm(lst: range) -> None:
     
     return
 
-for i in ft_tqdm(range(666)):
+for i in ft_tqdm(range(333)):
     sleep(0.005)
