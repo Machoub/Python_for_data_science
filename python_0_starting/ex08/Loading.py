@@ -3,8 +3,19 @@ import time
 from time import sleep
 import os
 
+def calculate_percentage(part: int, whole: int):
+    """
+    Calculate the percentage of 'part' relative to 'whole'.
+    """
+    if whole == 0:
+        return "Division by zero is not allowed."
+    return round((float(part) / float(whole)) * 100)
+
 def progressBar(barlen: int, curr: int, total_items: int) -> str:
-     
+    progress = int(round(barlen) * (curr + 1) / float(total_items))
+
+    progress_str = str()
+    progress_str += f"{calculate_percentage(curr + 1, total_items):3d}"
 
 def ft_tqdm(lst: range) -> None:
     total_items = len(lst)
@@ -15,8 +26,8 @@ def ft_tqdm(lst: range) -> None:
 
     for curr in lst:
         display = str()
-        display = progressBar(barlen, curr, total_items)
-        display = timesstamp(starttime, curr, total_items)
+        display += progressBar(barlen, curr, total_items)
+        ##display += timesstamp(starttime, curr, total_items)
         print(display, end='\r')
         yield
     
