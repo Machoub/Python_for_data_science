@@ -1,5 +1,6 @@
 import time
 from time import sleep
+from tqdm import tqdm
 import os
 
 def calculate_percentage(part: int, whole: int):
@@ -54,5 +55,8 @@ def ft_tqdm(lst: range) -> None:
     
     return
 
-for i in ft_tqdm(range(1000000)):
+for i in ft_tqdm(range(1000)):
+    sleep(0.005)
+
+for i in tqdm(range(1000)):
     sleep(0.005)
