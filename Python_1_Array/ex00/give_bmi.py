@@ -19,20 +19,14 @@ def give_bmi(height: list[int | float], weight: list[int | float]) -> list[int |
 
 def apply_limit(bmi: list[int | float], limit: int) -> list[bool]:
     try:
-        if not isinstance(bmi, (int, float)) or not isinstance(limit, int):
+        if not isinstance(limit, int) and not isinstance(limit, float):
             raise TypeError("BMI or Limits bad args")
-        for first, seconde in zip(bmi):
-            if first > limit or seconde > limit:
-                return False
-            elif first <= limit or seconde <= limit:
-                return True
+        ret = []
+        for value in bmi:
+            if not isinstance(value, (int, float)):
+                raise TypeError("BMI values must be integers or floats.")
+            ret.append(value > limit)
+        return ret
     except Exception as msg:
         print("An error occurred:", msg)
         return []
-    
-
-height = [2.71, 1.15]
-weight = [165.3, 38.4]
-bmi = give_bmi(height, weight)
-print(bmi, type(bmi))
-print(apply_limit(bmi, 26))
