@@ -3,16 +3,16 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def ft_load(path: str) -> np.ndarray:
+    """
+    Load an image from the specified path and return it as a numpy array."""
     try:
-        assert isinstance(path, str) and len(path) > 0, "Path must be a non-empty string"
-        img = Image.open(path)
-        assert img is not None, "Image could not be loaded"
-        assert img.format in ['JPEG', 'JPG'], "Image format must be JPEG or JPG"
-        Image_array = np.array(img)
-        print("The shape of image is:", Image_array.shape)
-        print(Image_array)
-
-        return Image_array
+        #shape not 3
+        if path[-5:] != ".jpeg" and path[-4:] != ".jpg":
+            raise FileNotFoundError("bad format .jpeg or .jpg")
+        img = np.array(Image.open(path))
+        if img.ndim != 3:
+            raise ValueError("Image must have 3 dimensions (height, width, channels)")
+        return img
     except Exception as Error:
         print("An error occurred:", Error)
-        return np.array([])
+        return []
