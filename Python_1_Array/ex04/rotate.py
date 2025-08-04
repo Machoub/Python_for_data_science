@@ -16,7 +16,6 @@ def rotate_image(img):
 
 def main():
     try:
-        print(ft_load("animal.jpeg"))
     
         image = Image.open("animal.jpeg")
         img_array = np.array(image)
@@ -25,7 +24,10 @@ def main():
         #check if the image is loaded correctly
         zoomed_img = img_array[x_start:x_end, y_start:y_end, 0:1]
         print("The shape of image is", zoomed_img.shape, "or", zoomed_img.shape[:2])
+        print(zoomed_img)
         rotate_img = rotate_image(zoomed_img)
+        print("New shape after Transpose:", rotate_img.shape[:2])
+        print(rotate_img)
         plt.imshow(rotate_img, cmap="gray")
         plt.show()
     except AssertionError as e:
