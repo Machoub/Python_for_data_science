@@ -14,6 +14,6 @@ blue = ft_blue(array)
 invert = ft_invert(array)
 grey = ft_grey(array)
 print(ft_invert.__doc__)
-plt.imshow(grey)
-plt.savefig("landscape_grey.jpg")
+plt.imshow(invert)
+plt.savefig("landscape_invert.jpg")
 
