@@ -16,4 +16,3 @@ grey = ft_grey(array)
 print(ft_invert.__doc__)
 plt.imshow(invert)
 plt.savefig("landscape_invert.jpg")
-
