@@ -1,37 +1,32 @@
 class calculator:
-	def __init__(self, num):
+	def __init__(self, num: list):
 		self.num = num
 	
 	def __repr__(self):
 		return f"{self.num}"
+	
+	@staticmethod
+	def dotproduct(V1: list[float], V2: list[float])-> None:
+		res = sum(x *y for x, y in zip(V1, V2))
+		print(f"Dot product is : {res}")
+	
+	@staticmethod
+	def add_vec(V1: list[float], V2: list[float])-> None:
+		res = list(float(x) + float(y) for x, y in zip(V1, V2))
+		print(f"Add Vector is : {res}")
 
-	def __add__(self, other) -> list:
-		return (calculator([x + other for x in self.num]))
-
-	def __sub__(self, other) -> list:
-		return (calculator([x - other for x in self.num]))
-
-	def __mul__(self, other) -> list:
-		return (calculator([x * other for x in self.num]))
-
-	def __truediv__(self, other) -> list:
-		if other == 0:
-			raise ValueError("Cannot divide by zero.")
-		return (calculator([x / other for x in self.num]))
+	@staticmethod
+	def sous_vec(V1: list[float], V2: list[float])-> None:
+		res = list(float(x) - float(y) for x, y in zip(V1, V2))
+		print(f"Sous Vector is : {res}")
 
 def main():
-    v1 = calculator([0.0, 1.0, 2.0, 3.0, 4.0, 5.0])
-    print(v1 + 5)
-    print("---")
-
-    v2 = calculator([0.0, 1.0, 2.0, 3.0, 4.0, 5.0])
-    print(v2 * 5)
-    print("---")
-
-    v3 = calculator([10.0, 15.0, 20.0])
-    resultat = v3 - 5
-    print(resultat)       # [5.0, 10.0, 15.0]
-    print(resultat / 5)   # [1.0, 2.0, 3.0]
+	a = [5, 10, 2]
+	b = [2, 4, 3]
+	
+	calculator.dotproduct(a, b)
+	calculator.add_vec(a, b)
+	calculator.sous_vec(a, b)
 
 if __name__ == "__main__":
 	main()

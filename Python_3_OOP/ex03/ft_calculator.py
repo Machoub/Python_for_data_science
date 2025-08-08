@@ -1,20 +1,20 @@
 class calculator:
-	def __init__(self, num):
+	def __init__(self, num: list[float]):
 		self.num = num
 	
 	def __repr__(self):
 		return f"{self.num}"
 
-	def __add__(self, other) -> list:
+	def __add__(self, other) -> list[float]:
 		return (calculator([x + other for x in self.num]))
 
-	def __sub__(self, other) -> list:
+	def __sub__(self, other) -> list[float]:
 		return (calculator([x - other for x in self.num]))
 
-	def __mul__(self, other) -> list:
+	def __mul__(self, other) -> list[float]:
 		return (calculator([x * other for x in self.num]))
 
-	def __truediv__(self, other) -> list:
+	def __truediv__(self, other) -> list[float]:
 		if other == 0:
 			raise ValueError("Cannot divide by zero.")
 		return (calculator([x / other for x in self.num]))
