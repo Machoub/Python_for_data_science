@@ -1,7 +1,6 @@
 import time
-from time import sleep
-from tqdm import tqdm
 import os
+
 
 def calculate_percentage(part: int, whole: int):
     """
@@ -11,7 +10,11 @@ def calculate_percentage(part: int, whole: int):
         return "Division by zero is not allowed."
     return round((float(part) / float(whole)) * 100)
 
+
 def timesstamp(starttime: int, curr: int, total_items: int) -> str:
+    """
+    Calculate elapsed time, speed, and estimated remaining time.
+    """
     tim = time.time() - starttime
     speed = curr / tim if tim > 0 else 0
     remaining_time = (total_items - curr) / speed if speed > 0 else 0
@@ -26,7 +29,11 @@ def timesstamp(starttime: int, curr: int, total_items: int) -> str:
 
     return result
 
+
 def progressBar(barlen: int, curr: int, total_items: int) -> str:
+    """
+    Create a progress bar string.
+    """
     progress = int(round(barlen) * (curr + 1) / float(total_items))
 
     progress_str = str()
@@ -39,10 +46,14 @@ def progressBar(barlen: int, curr: int, total_items: int) -> str:
 
     return progress_str
 
+
 def ft_tqdm(lst: range) -> None:
+    """
+    Custom tqdm function to display a progress bar in the terminal.
+    """
     total_items = len(lst)
     size = os.get_terminal_size()
-    reqChar = 8 + (len(str(total_items )) * 2) + 26
+    reqChar = 8 + (len(str(total_items)) * 2) + 26
     barlen = size.columns - reqChar
     starttime = time.time()
 
@@ -52,11 +63,4 @@ def ft_tqdm(lst: range) -> None:
         display += timesstamp(starttime, curr, total_items)
         print(display, end='\r')
         yield
-    
     return
-
-for i in ft_tqdm(range(1000)):
-    sleep(0.005)
-
-for i in tqdm(range(1000)):
-    sleep(0.005)

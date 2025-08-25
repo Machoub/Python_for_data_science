@@ -1,6 +1,11 @@
 import sys
 
+
 def ASCII_to_morse(text):
+    """
+    Convert a text in morse code.
+    returns the morse code as a string.
+    """
     NESTED_MORSE = {
         'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.',
         'G': '--.', 'H': '....', 'I': '..', 'J': '.---', 'K': '-.-',
@@ -18,9 +23,15 @@ def ASCII_to_morse(text):
             raise AssertionError("Unsupported character: {}".format(char))
     return ' '.join(morse_text)
 
+
 def main(argv):
+    """
+        Take a sys.argv input and output sys.argv[1] as morse
+    """
+
     try:
-        assert len(argv) == 2 and len(argv[1]) > 0 and isinstance(argv[1], str), " the arguments are bad"
+        assert len(argv) == 2 and len(argv[1])\
+            > 0 and isinstance(argv[1], str), " the arguments are bad"
         print(ASCII_to_morse(argv[1].upper()))
 
     except AssertionError as msg:
