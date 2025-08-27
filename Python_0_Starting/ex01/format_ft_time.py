@@ -1,8 +1,4 @@
 from datetime import date
 import time
 
-epoch = time.strftime("Seconds since %B %d, %Y: ", time.gmtime(0))
-sec = time.time()
-
-print(epoch, sec, " or ", f"{sec:.2e}", " in scientific notation")
-print(date.today().strftime('%b %d %Y'))
+print(f"Seconds since {time.strftime('%B %d, %Y', time.gmtime(0))} : {time.time():,.4f} or {time.time():.2e} in scientific notation\n{date.today().strftime('%b %d %Y')}")
