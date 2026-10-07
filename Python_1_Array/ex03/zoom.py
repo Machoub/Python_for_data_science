@@ -1,19 +1,22 @@
-from PIL import Image
 import matplotlib.pyplot as plt
+from PIL import Image
 import numpy as np
 from load_image import ft_load
 
+
 def main():
+    """Load an image, print its pixels, then display a zoomed crop."""
     try:
-        print(ft_load("animal.jpeg"))
-    
-        image = Image.open("animal.jpeg")
-        img_array = np.array(image)
-        x_start, x_end = 100, 500
-        y_start, y_end = 450, 850
-        #check if the image is loaded correctly
-        zoomed_img = img_array[x_start:x_end, y_start:y_end, 0:1]
-        print("New shape after slicing:", zoomed_img.shape, "or", zoomed_img.shape[:2])
+        img_array = ft_load("animal.jpeg")
+        if len(img_array) == 0:
+            return
+        print(img_array)
+        gray = np.array(Image.fromarray(img_array).convert("L"))
+        y_start, y_end = 100, 500
+        x_start, x_end = 450, 850
+        zoomed_img = gray[y_start:y_end, x_start:x_end, np.newaxis]
+        print("New shape after slicing:", zoomed_img.shape, "or",
+              zoomed_img.shape[:2])
         print(zoomed_img)
         plt.imshow(zoomed_img, cmap="gray")
         plt.show()
@@ -23,6 +26,7 @@ def main():
         print("Process interrupted by user.")
     except Exception as e:
         print("Error:", e)
+
 
 if __name__ == "__main__":
     main()

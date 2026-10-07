@@ -1,32 +1,24 @@
 class calculator:
-	def __init__(self, num: list):
-		self.num = num
-	
-	def __repr__(self):
-		return f"{self.num}"
-	
-	@staticmethod
-	def dotproduct(V1: list[float], V2: list[float])-> None:
-		res = sum(x *y for x, y in zip(V1, V2))
-		print(f"Dot product is : {res}")
-	
-	@staticmethod
-	def add_vec(V1: list[float], V2: list[float])-> None:
-		res = list(float(x) + float(y) for x, y in zip(V1, V2))
-		print(f"Add Vector is : {res}")
+    """Compute dot product, addition and subtraction of two vectors."""
 
-	@staticmethod
-	def sous_vec(V1: list[float], V2: list[float])-> None:
-		res = list(float(x) - float(y) for x, y in zip(V1, V2))
-		print(f"Sous Vector is : {res}")
+    def __init__(self, num: list):
+        """Store the list of numbers to work on."""
+        self.num = num
 
-def main():
-	a = [5, 10, 2]
-	b = [2, 4, 3]
-	
-	calculator.dotproduct(a, b)
-	calculator.add_vec(a, b)
-	calculator.sous_vec(a, b)
+    @staticmethod
+    def dotproduct(V1: list[float], V2: list[float]) -> None:
+        """Print the dot product of two vectors."""
+        res = sum(x * y for x, y in zip(V1, V2))
+        print(f"Dot product is: {res}")
 
-if __name__ == "__main__":
-	main()
+    @staticmethod
+    def add_vec(V1: list[float], V2: list[float]) -> None:
+        """Print the element-wise sum of two vectors."""
+        res = list(float(x) + float(y) for x, y in zip(V1, V2))
+        print(f"Add Vector is : {res}")
+
+    @staticmethod
+    def sous_vec(V1: list[float], V2: list[float]) -> None:
+        """Print the element-wise difference of two vectors."""
+        res = list(float(x) - float(y) for x, y in zip(V1, V2))
+        print(f"Sous Vector is: {res}")

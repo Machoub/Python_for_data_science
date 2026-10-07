@@ -1,37 +1,36 @@
 class calculator:
-	def __init__(self, num: list[float]):
-		self.num = num
-	
-	def __repr__(self):
-		return f"{self.num}"
+    """Apply a scalar operation to every element of a list of numbers."""
 
-	def __add__(self, other) -> list[float]:
-		return (calculator([x + other for x in self.num]))
+    def __init__(self, num: list[float]):
+        """Store the list of numbers to work on."""
+        self.num = num
 
-	def __sub__(self, other) -> list[float]:
-		return (calculator([x - other for x in self.num]))
+    def __add__(self, other) -> None:
+        """Add a scalar to each element in place and print it."""
+        self.num = [x + other for x in self.num]
+        print(f"{self.num}")
 
-	def __mul__(self, other) -> list[float]:
-		return (calculator([x * other for x in self.num]))
+    def __sub__(self, other) -> None:
+        """Subtract a scalar from each element in place and print it."""
+        self.num = [x - other for x in self.num]
+        print(f"{self.num}")
 
-	def __truediv__(self, other) -> list[float]:
-		if other == 0:
-			raise ValueError("Cannot divide by zero.")
-		return (calculator([x / other for x in self.num]))
+    def __mul__(self, other) -> None:
+        """Multiply each element by a scalar in place and print it."""
+        self.num = [x * other for x in self.num]
+        print(f"{self.num}")
 
-def main():
-    v1 = calculator([0.0, 1.0, 2.0, 3.0, 4.0, 5.0])
-    print(v1 + 5)
-    print("---")
+    def __truediv__(self, other) -> None:
+        """Divide each element by a scalar in place and print it.
 
-    v2 = calculator([0.0, 1.0, 2.0, 3.0, 4.0, 5.0])
-    print(v2 * 5)
-    print("---")
-
-    v3 = calculator([10.0, 15.0, 20.0])
-    resultat = v3 - 5
-    print(resultat)       # [5.0, 10.0, 15.0]
-    print(resultat / 5)   # [1.0, 2.0, 3.0]
-
-if __name__ == "__main__":
-	main()
+        If the scalar is zero, an error message is printed instead and
+        the vector is left unchanged.
+        """
+        try:
+            if other == 0:
+                raise ValueError("Cannot divide by zero.")
+        except ValueError as e:
+            print(e)
+        else:
+            self.num = [x / other for x in self.num]
+            print(f"{self.num}")
